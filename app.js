@@ -17,8 +17,14 @@ const middleware = require("./middleware/auth");
 //endpoints
 app.use("/auth", authRoutes);
 app.use("/", todoRoutes);
-app.get("/", middleware.authenticate, (req, res) => {
+
+//test
+app.get("/protectedroute", middleware.authenticate, (req, res) => {
   res.json({ protectedRoute: "yes" });
+});
+
+app.use((req, res) => {
+  res.json({ message: "Page Not Found" });
 });
 
 mongoose
